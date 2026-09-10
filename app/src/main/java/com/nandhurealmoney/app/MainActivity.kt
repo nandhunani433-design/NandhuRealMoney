@@ -228,7 +228,7 @@ fun BottomNav(nav:NavHostController, route:String) {
     }
 }
 
-@@Composable
+@Composable
 fun Trade(nav: NavHostController, buy: Boolean) {
 
     val amounts = listOf(
