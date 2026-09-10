@@ -226,28 +226,126 @@ fun BottomNav(nav:NavHostController, route:String) {
     }
 }
 
-@Composable fun Trade(nav:NavHostController, buy:Boolean) {
-    var amount by remember{mutableStateOf("")}
-    var result by remember{mutableStateOf("")}
-    Column(Modifier.fillMaxSize().background(Page).padding(24.dp)) {
-        Text(if(buy)"Buy PCoin" else "Sell PCoin",color=Navy,fontSize=30.sp,fontWeight=FontWeight.Bold)
-        Text("Demo transaction screen",color=Gray)
-        Spacer(Modifier.height(24.dp))
-        OutlinedTextField(amount,{amount=it},label={Text("Amount in ₹")},singleLine=true,modifier=Modifier.fillMaxWidth())
-        Spacer(Modifier.height(14.dp))
-        Card(colors=CardDefaults.cardColors(LightBlue),shape=RoundedCornerShape(12.dp),modifier=Modifier.fillMaxWidth()){
-            Text(if(buy)"Demo rate: 3.5% promotional calculation" else "Demo conversion: 1 PCoin = ₹1",color=Navy,modifier=Modifier.padding(18.dp))
-        }
-        Spacer(Modifier.height(20.dp))
-        Button(onClick={
-            val a=amount.toDoubleOrNull()?:0.0
-            result=if(a>0 && buy)"Demo result: ₹%.2f → %.2f PCoin".format(a,a*1.035)
-            else if(a>0)"Demo result: %.2f PCoin → ₹%.2f".format(a,a)
-            else "Please enter a valid amount."
-        },modifier=Modifier.fillMaxWidth(),shape=RoundedCornerShape(10.dp)){Text(if(buy)"BUY (DEMO)" else "SELL (DEMO)")}
-        if(result.isNotEmpty()){Spacer(Modifier.height(18.dp));Text(result,color=Navy,fontWeight=FontWeight.Bold)}
+@@Composable
+fun Trade(nav: NavHostController, buy: Boolean) {
+
+    val amounts = listOf(
+        237.0,
+        486.0,
+        735.0,
+        1240.0,
+        1585.0,
+        1937.0,
+        2275.0,
+        2875.0,
+        3260.0,
+        3745.0,
+        4280.0,
+        4560.0,
+        4895.0
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Page)
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+
+        Text(
+            text = if (buy) "Buy PCoin" else "Sell PCoin",
+            color = Navy,
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Text(
+            text = "Demo transaction screen",
+            color = Gray,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold
+        )
+
         Spacer(Modifier.height(18.dp))
-        Text("This app does not perform real-money transfers.",color=Gray,fontSize=14.sp)
+
+        Text(
+            text = if (buy) "Available Buy Values" else "Available Sell Values",
+            color = Navy,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(Modifier.height(10.dp))
+
+        amounts.forEach { amount ->
+
+            val income = amount * 0.035
+            val total = amount + income
+
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 5.dp),
+                colors = CardDefaults.cardColors(Color.White)
+            ) {
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(14.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+
+                        Text(
+                            text = "₹${"%,.2f".format(amount)}",
+                            color = Navy,
+                            fontSize = 23.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        Spacer(Modifier.height(5.dp))
+
+                        Text(
+                            text = "Income  ₹${"%,.2f".format(income)}",
+                            color = Color.Red,
+                            fontSize = 16.sp
+                        )
+
+                        Text(
+                            text = "Balance  ₹${"%,.2f".format(total)}",
+                            color = Navy,
+                            fontSize = 15.sp
+                        )
+                    }
+
+                    Button(
+                        onClick = {
+                            // Demo only
+                        },
+                        modifier = Modifier.width(105.dp)
+                    ) {
+                        Text(
+                            text = if (buy) "BUY" else "SELL",
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            }
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        Text(
+            text = "This app does not perform real-money transfers.",
+            color = Gray,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
