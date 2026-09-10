@@ -351,10 +351,179 @@ fun Trade(nav: NavHostController, buy: Boolean) {
     }
 }
 
-@Composable fun Profile(nav:NavHostController)=SimplePage("My") {
-    Text("NandhuReal Money",color=Navy,fontSize=23.sp,fontWeight=FontWeight.Bold)
-    Spacer(Modifier.height(15.dp))
-    Button(onClick={nav.navigate("introduction")}){Text("Introduction")}
+@Composable
+fun Profile(nav: NavHostController) {
+    LazyColumn(
+        Modifier
+            .fillMaxSize()
+            .background(Page)
+            .padding(horizontal = 16.dp)
+    ) {
+        item {
+            Spacer(Modifier.height(20.dp))
+
+            Card(
+                Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(Color.White),
+                shape = RoundedCornerShape(18.dp)
+            ) {
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(22.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Surface(
+                        shape = CircleShape,
+                        color = LightBlue,
+                        modifier = Modifier.size(82.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.Person,
+                            null,
+                            tint = Blue,
+                            modifier = Modifier.padding(18.dp)
+                        )
+                    }
+
+                    Spacer(Modifier.height(12.dp))
+
+                    Text(
+                        "NandhuReal Money",
+                        color = Navy,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Spacer(Modifier.height(5.dp))
+
+                    Text(
+                        "Standard Member",
+                        color = Gray,
+                        fontSize = 16.sp
+                    )
+                }
+            }
+
+            Spacer(Modifier.height(18.dp))
+        }
+
+        item {
+            ProfileItem("Earn Record", Icons.Default.AccountBalance) { }
+            ProfileItem("Balance Record", Icons.Default.ReceiptLong) { }
+            ProfileItem("PIN Code", Icons.Default.Lock) { }
+            ProfileItem("Telegram", Icons.Default.Send) { }
+            ProfileItem("Ranking", Icons.Default.EmojiEvents) { }
+            ProfileItem("My Team", Icons.Default.Groups) { }
+            ProfileItem("Language", Icons.Default.Language) { }
+
+            Spacer(Modifier.height(10.dp))
+
+            Card(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 5.dp)
+                    .clickable { },
+                colors = CardDefaults.cardColors(Color.White),
+                shape = RoundedCornerShape(14.dp)
+            ) {
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(18.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        Icons.Default.Logout,
+                        null,
+                        tint = Color.Red,
+                        modifier = Modifier.size(25.dp)
+                    )
+
+                    Spacer(Modifier.width(16.dp))
+
+                    Text(
+                        "Log Out",
+                        color = Color.Red,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
+            }
+
+            Spacer(Modifier.height(30.dp))
+
+            Text(
+                "NandhuReal Money",
+                color = Gray,
+                fontSize = 14.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Text(
+                "Demo interface only",
+                color = Gray,
+                fontSize = 13.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(Modifier.height(20.dp))
+        }
+    }
+}
+
+@Composable
+fun ProfileItem(
+    title: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    onClick: () -> Unit
+) {
+    Card(
+        Modifier
+            .fillMaxWidth()
+            .padding(vertical = 5.dp)
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(Color.White),
+        shape = RoundedCornerShape(14.dp)
+    ) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(18.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = LightBlue,
+                modifier = Modifier.size(48.dp)
+            ) {
+                Icon(
+                    icon,
+                    null,
+                    tint = Blue,
+                    modifier = Modifier.padding(12.dp)
+                )
+            }
+
+            Spacer(Modifier.width(16.dp))
+
+            Text(
+                title,
+                color = Navy,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.weight(1f)
+            )
+
+            Text(
+                "›",
+                color = Gray,
+                fontSize = 28.sp
+            )
+        }
+    }
 }
 
 @Composable fun Introduction(nav:NavHostController) {
