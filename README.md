@@ -1,4 +1,4 @@
-# NandhuReal Money — screenshot-inspired Android project
+# NandhuReal Money — Android app for earning 
 
 This version is redesigned to more closely match the supplied PaisaBase screenshots:
 - white mobile dashboard
