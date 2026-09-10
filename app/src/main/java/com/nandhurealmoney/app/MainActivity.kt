@@ -266,8 +266,8 @@ fun BottomNav(nav:NavHostController, route:String) {
             Spacer(Modifier.height(30.dp))
         }
         item{Section("What is PCoin?","PCoin is a demo token used inside NandhuReal Money. In this project it has no cash value and cannot be withdrawn.") }
-        item{Section(""Buy" means?","This screen demonstrates buying demo PCoin with a rupee amount. The example calculation uses 3.5% as shown in the reference interface.") }
-        item{Section(""Sell" means?","This screen demonstrates converting demo PCoin into a displayed rupee value. No bank or UPI transfer is performed.") }
+        item { Section("\"Buy\" means?", "This screen demonstrates converting demo PCoin into a displayed rupee value. No bank or real-money transaction occurs.") }
+        item { Section("\"Sell\" means?", "This screen demonstrates converting demo PCoin into a displayed rupee value. No bank or real-money transaction occurs.") }
         item{Section("How you earn?","The app demonstrates percentage calculations for UI purposes. It does not promise income, profit, or investment returns.") }
         item{Section("+UPI Account","The UPI section is a visual demo. It does not request bank credentials or connect to payment providers.") }
         item{Section("Advantages of Wallet Working Mode","• Simple wallet-style interface\n• No bank credentials required\n• No real-money transfers\n• Buy/Sell demo screens\n• Activity and membership UI") }
